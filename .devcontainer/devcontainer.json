@@ -1,0 +1,6 @@
+{
+  "build": {
+    "dockerfile":  "Dockerfile.development"
+  },
+  "name": "aws-cpp-lambda"
+}

@@ -1,0 +1,22 @@
+FROM amazonlinux:2023
+
+RUN dnf update -y
+RUN dnf install -y gcc-c++ make git libcurl-devel cmake awscli zlib-devel
+RUN dnf install -y procps libXext libXrender libXtst freetype # Required for clion remote development
+
+RUN git clone https://github.com/awslabs/aws-lambda-cpp.git && \
+    cd aws-lambda-cpp && mkdir build && cd /aws-lambda-cpp/build && \
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF \
+    -DCMAKE_INSTALL_PREFIX=/lib-build -DCMAKE_CXX_COMPILER=g++ && \
+    make && make install
+
+RUN curl -fsSL https://rpm.nodesource.com/setup_20.x | bash - && \
+    dnf update -y && dnf install -y nodejs
+RUN npm install -g aws-cdk
+
+ENV CMAKE_PREFIX_PATH="/lib-build"
+
+RUN mkdir /root/.aws
+COPY credentials /root/.aws/
+
+WORKDIR /usr/src/app
