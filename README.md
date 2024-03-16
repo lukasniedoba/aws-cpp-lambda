@@ -17,16 +17,15 @@ Sample project to create a C++ AWS Lambda function and deploy using AWS CDK.
 
 ## Usage
 
+- Build devcontainer in your IDE or codespace on GitHub
+- Open the project in devcontainer
+- Open shell in devcontainer
 - Prepare your AWS credentials
 
 ```shell
-cp .devcontainer/credentials.TEMPLATE .devcontainer/credentials
-# fill your credentials into .devcontainer/credentials
+aws configure
 ```
 
-- Build devcontainer
-- Open the project in devcontainer
-- Open shell in devcontainer
 - Initialize the project
 
 ```shell
