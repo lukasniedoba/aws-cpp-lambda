@@ -2,5 +2,6 @@
   "build": {
     "dockerfile":  "Dockerfile.development"
   },
+  "postCreateCommand": "bin/init.sh",
   "name": "aws-cpp-lambda"
 }

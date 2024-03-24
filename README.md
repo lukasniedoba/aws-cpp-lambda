@@ -26,12 +26,6 @@ Sample project to create a C++ AWS Lambda function and deploy using AWS CDK.
 aws configure
 ```
 
-- Initialize the project
-
-```shell
-bin/init.sh
-```
-
 - Build the project
 
 ```shell
@@ -45,8 +39,14 @@ bin/deploy.sh
 ```
 
 - Check `deploy/stack-output.json` for the deployed lambda function name
-- Test the project
+- Test the project using AWS cli lambda invoke
 
 ```shell
 bin/invoke.sh <lambda-function-name>
+```
+
+- Test the project using curl HTTP POST call
+
+```shell
+bin/call_http.sh <lambda-function-name>
 ```

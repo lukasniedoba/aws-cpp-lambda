@@ -30,6 +30,10 @@ export class AwsCppLambdaStack extends BaseStack {
             memorySize: 128,
         });
 
+        const lambdaUrl = cppLambda.addFunctionUrl({
+            authType: lambda.FunctionUrlAuthType.NONE,
+        });
+
         new logs.LogGroup(this, 'cpp-lambda-log-group', {
             logGroupName: `/aws/lambda/${cppLambda.functionName}`,
             retention: logs.RetentionDays.SIX_MONTHS,
@@ -132,6 +136,9 @@ export class AwsCppLambdaStack extends BaseStack {
         });
         new cdk.CfnOutput(this, 'FunctionName', {
             value: cppLambda.functionName,
+        });
+        new cdk.CfnOutput(this, 'FunctionUrl', {
+            value: lambdaUrl.url,
         });
     }
 }
